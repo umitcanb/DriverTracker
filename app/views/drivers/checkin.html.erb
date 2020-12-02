@@ -1,0 +1,8 @@
+<h3>Check in how many hours you worked today<h3>
+
+<%= form_tag(save_checkin_path(params[:id]), method: :post) do %>
+  <%= label_tag(:hours) %>
+  <%= number_field_tag(:hours) %>
+  <%= submit_tag "Submit" %>
+<% end %>
+
