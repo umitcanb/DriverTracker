@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 2020_12_03_110248) do
     t.string "name"
     t.string "surname"
     t.string "city"
+    t.boolean "admin", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "email", default: "", null: false

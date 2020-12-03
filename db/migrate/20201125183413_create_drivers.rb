@@ -4,6 +4,7 @@ class CreateDrivers < ActiveRecord::Migration[6.0]
       t.string :name
       t.string :surname
       t.string :city
+      t.boolean :admin, :default => false
 
       t.timestamps
     end

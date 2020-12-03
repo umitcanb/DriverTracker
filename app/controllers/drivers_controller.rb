@@ -4,6 +4,13 @@ class DriversController < ApplicationController
   # GET /drivers
   # GET /drivers.json
   def checkin
+    @driver = Driver.find(params[:id])
+    if current_driver != @driver 
+      respond_to do |format|
+        format.html { redirect_to @driver, notice: 'You can only check in for yourself' }
+      end
+    end
+    
     #redirects to the html template in which the driver indicates the hours worked
   end 
 
@@ -39,6 +46,12 @@ class DriversController < ApplicationController
 
   # GET /drivers/1/edit
   def edit
+    @driver = Driver.find(params[:id])
+    if current_driver != @driver
+      respond_to do |format|
+        format.html { redirect_to @driver, notice: 'You can edit only your information ' }
+      end
+    end
   end
 
   # POST /drivers
@@ -72,10 +85,12 @@ class DriversController < ApplicationController
   end
 
   def destroy
-    @driver.destroy
-    respond_to do |format|
-      format.html { redirect_to drivers_url, notice: 'Driver was successfully destroyed.' }
-      format.json { head :no_content }
+    if current_driver.admin == true
+      @driver.destroy
+      respond_to do |format2|
+        format2.html { redirect_to drivers_url, notice: 'Driver was successfully destroyed.' }
+        format2.json { head :no_content }
+      end
     end
   end
 

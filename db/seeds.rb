@@ -21,7 +21,8 @@ admin = Driver.create(
                                     city: 'Barcelona',
                                     email: 'admin@test',
                                     password: '123456',
-                                    password_confirmation: '123456')
+                                    password_confirmation: '123456',
+                                    admin: true)
 
 
 driver1 = Driver.create(
