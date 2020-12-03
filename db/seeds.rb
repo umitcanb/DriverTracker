@@ -19,30 +19,40 @@ admin = Driver.create(
                                     name: 'Admin',
                                     surname: 'Admin',
                                     city: 'Barcelona',
-                                    email: 'admin@test')
+                                    email: 'admin@test',
+                                    password: '123456',
+                                    password_confirmation: '123456')
 
 
 driver1 = Driver.create(
                                     name: 'Umit',
                                     surname: 'Batur',
                                     city: 'Barcelona',
-                                    email: 'umit@test')
+                                    email: 'umit@test',
+                                    password: '123456',
+                                    password_confirmation: '123456')
 
 driver2 = Driver.create(
                                     name: 'Joan',
                                     surname: 'Nic',
                                     city: 'Barcelona',
-                                    email: 'joan@test')
+                                    email: 'joan@test',
+                                    password: '123456',
+                                    password_confirmation: '123456')
 
 driver2 = Driver.create(
                                     name: 'Devin',
                                     surname: 'Oz',
                                     city: 'Barcelona',
-                                    email: 'devin@test')                                   
+                                    email: 'devin@test',
+                                    password: '123456',
+                                    password_confirmation: '123456')                                   
 
 driver3 = Driver.create(
                                     name: 'Natali',
                                     surname: 'Mat',
                                     city: 'Barcelona',
-                                    email: 'nat@test')  
+                                    email: 'nat@test',
+                                    password: '123456',
+                                    password_confirmation: '123456')  
 
