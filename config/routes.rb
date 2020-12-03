@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :drivers, path: 'driver'
   resources :drivers
   get '/drivers/:id/checkin', to: 'drivers#checkin' , as: :checkin
   post '/drivers/:id/save_checkin', to: 'drivers#save_checkin' , as: :save_checkin

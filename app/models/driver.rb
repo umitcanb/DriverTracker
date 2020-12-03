@@ -1,7 +1,9 @@
 class Driver < ApplicationRecord
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+    devise :database_authenticatable, :registerable,
+            :recoverable, :rememberable, :validatable
     has_many :check_ins #, dependent: :destroy
-    require 'date'
-    require 'check_in.rb' #use check_in class
 
     def check_in(hours)
         date = Date.today
