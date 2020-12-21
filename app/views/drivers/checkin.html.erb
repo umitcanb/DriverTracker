@@ -1,8 +1,8 @@
 <h3>Check in how many hours you worked today<h3>
 
-<%= form_tag(save_checkin_path(params[:id]), method: :post) do %>
+<%= form_with(url: "/drivers/#{@driver.id}/save_checkin", method: "post") do %>
   <%= label_tag(:hours) %>
   <%= number_field_tag(:hours) %>
-  <%= submit_tag "Submit" %>
+  <%= submit_tag("Check In") %>
 <% end %>
 

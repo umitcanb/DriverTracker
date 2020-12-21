@@ -1,10 +1,8 @@
 class DriversController < ApplicationController
-  before_action :set_driver, only: [:show, :edit, :update, :destroy]
+  before_action :set_driver, only: [:show, :edit, :update, :destroy, :save_checkin, :checkin, :see_worked_hours]
 
-  # GET /drivers
-  # GET /drivers.json
+
   def checkin
-    @driver = Driver.find(params[:id])
     if current_driver != @driver 
       respond_to do |format|
         format.html { redirect_to @driver, notice: 'You can only check in for yourself' }
@@ -15,19 +13,17 @@ class DriversController < ApplicationController
   end 
 
   def save_checkin
-    @driver = Driver.find(params[:id])
-    respond_to do |format|
-      if @driver.check_in(params[:hours])
-        format.html { redirect_to @driver, notice: 'Your hours are successfully checked in.' }
-      else
-        format.html { redirect_to @driver, notice: 'Something went wrong, try again.' }
-      end
+    if @driver.check_ins.create(date: Date.today, hours: params[:hours]) 
+      redirect_to drivers_path, notice: 'Checked-in.'
+    else
+      redirect_to drivers_path, notice: 'Something went wrong.'
     end
   end 
 
   def see_worked_hours
-    @driver = Driver.find(params[:id])
     @workedHours = @driver.calculateWorkedHoursOfLastWeek
+   # directly from controller:  @workedHours = @driver.check_ins.where("date>=?", 7.days.ago).sum(:hours)
+
   end
 
   def index
@@ -46,7 +42,6 @@ class DriversController < ApplicationController
 
   # GET /drivers/1/edit
   def edit
-    @driver = Driver.find(params[:id])
     if current_driver != @driver
       respond_to do |format|
         format.html { redirect_to @driver, notice: 'You can edit only your information ' }

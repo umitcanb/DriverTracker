@@ -5,20 +5,11 @@ class Driver < ApplicationRecord
             :recoverable, :rememberable, :validatable
     has_many :check_ins #, dependent: :destroy
 
-    def check_in(hours)
-        date = Date.today
-        checkIn = CheckIn.new(:date => date, :hours => hours, :driver_id => self.id) 
-        checkIn.save
-
-        return true
-    end
-
     def findCheckinsOfLastWeek
         today = Date.today
         lastWeekCheckins = []
-        checkins = self.check_ins
 
-        checkins.each do |checkin| 
+        self.check_ins.each do |checkin| 
             if checkin.date < today-7      #it returns the array when it reachs a week before
                 return lastWeekCheckins
             end
